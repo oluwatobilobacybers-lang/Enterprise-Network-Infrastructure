@@ -47,6 +47,9 @@ Departments included:
 ✅ DHCP Relay using `ip helper-address`
 ✅ Automatic IP Address Assignment
 ✅ End-to-End Inter-VLAN Connectivity
+✅ Enterprise DNS Server
+✅ Internal DNS Records
+✅ Hostname Resolution
 
 ### 🚧 In Progress
 
@@ -121,6 +124,10 @@ This project strengthened my understanding of:
 - Configured a centralized DHCP server for multiple VLANs.
 - Used DHCP Relay (`ip helper-address`) to forward DHCP requests across VLANs.
 - Verified automatic IP assignment and successful inter-VLAN communication.
+- Configured an enterprise DNS server.
+- Created DNS A records for internal services.
+- Verified hostname resolution from client PCs.
+- Learned how DNS integrates with DHCP to provide automatic name resolution.
 
 ## Project Screenshots
 
