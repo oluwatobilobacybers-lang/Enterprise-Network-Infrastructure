@@ -1,5 +1,7 @@
 # Enterprise Network Infrastructure
 
+🚧 **Status:** In Progress
+
 ## Overview
 
 This project demonstrates the design and implementation of a secure enterprise network infrastructure using Cisco Packet Tracer. It showcases network segmentation, inter-VLAN routing, centralized network services, and foundational security controls commonly used in enterprise environments.
@@ -66,9 +68,11 @@ Enterprise-Network-Infrastructure/
 └── Screenshots/
     ├── enterprise-network-diagram.png
     ├── vlan-configuration.png
-    ├── trunk-configuration.png
-    ├── router-interface-brief.png
-    └── inter-vlan-routing-test.png
+    ├── vlan-trunk-configuration.png
+    ├── dhcp-server-configuration.png
+    ├── http-homepage.png
+    ├── web-server-test.png
+    └── ftp-user-authentication.png
 ```
 
 ## Features Implemented
@@ -187,28 +191,28 @@ This project strengthened my understanding of:
 
 ### Enterprise Network Diagram
 
-![Enterprise Network Diagram](Screenshots/Enterprise-Network-Diagram.png)
+![Enterprise Network Diagram](Screenshots/enterprise-network-diagram.png)
 
 ### VLAN Configuration
 
-![Enterprise Network Diagram](Screenshots/vlan-creation-and-configuration.png)
+![VLAN Configuration](Screenshots/vlan-creation-and-configuration.png)
 
 ### Trunk Configuration
 
-![Enterprise Network Diagram](Screenshots/Vlan-&-trunk-configuration.png)
+![Trunk Configuration](Screenshots/vlan-trunk-configuration.png)
 
 ### DNS Configuration
 
-![Enterprise Network Diagram](Screenshots/The-DHCP-configuration-on-the-server.png)
+![DHCP Configuration](Screenshots/dhcp-server-configuration.png)
 
 ### Enterprise Web Server
 
-![Enterprise Network Diagram](Screenshots/index.html.page.in.the.server.png)
-![Enterprise Network Diagram](Screenshots/The-browser-displaying-192.168.50.2.png)
+![HTML Home Page](Screenshots/http-homepage.png)
+![HTTP Web Server Test](Screenshots/web-server-test.png)
 
 ### FTP Authentication
 
-![Enterprise Network Diagram](Screenshots/FTP-user-accounts-&-server-enabled.png)
+![FTP User Accounts](Screenshots/ftp-user-authentication.png)
 
 ## Future Improvements
 
@@ -233,7 +237,7 @@ Aspiring Cybersecurity Analyst
 - CompTIA Security+
 - CEH Candidate
 
-🔗 LinkedIn: *(https://www.linkedin.com/in/oluwatobiloba-banjo-b2368819b/)*
+🔗 **LinkedIn:** https://www.linkedin.com/in/oluwatobiloba-banjo-b2368819b/
 
-💻 GitHub: *(https://github.com/oluwatobilobacybers-lang)*
+💻 **GitHub:** https://github.com/oluwatobilobacybers-lang
 
