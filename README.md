@@ -204,6 +204,7 @@ This project strengthened my understanding of:
 ### Enterprise Web Server
 
 ![Enterprise Network Diagram](Screenshots/index.html.page.in.the.server.png)
+![Enterprise Network Diagram](Screenshots/The-browser-displaying-192.168.50.2.png)
 
 ### FTP Authentication
 
@@ -235,4 +236,4 @@ Aspiring Cybersecurity Analyst
 🔗 LinkedIn: *(https://www.linkedin.com/in/oluwatobiloba-banjo-b2368819b/)*
 
 💻 GitHub: *(https://github.com/oluwatobilobacybers-lang)*
-Connect with me on LinkedIn.
+
