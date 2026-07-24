@@ -39,14 +39,14 @@ Departments included:
 
 ## Current Progress
 
-### ✅ Completed
-
-- ✅ Created and configured VLANs (10, 20, 30, 40, 50)
-- ✅ Configured trunk links between the switch and router
-- ✅ Implemented Router-on-a-Stick for Inter-VLAN Routing
-- ✅ Added a dedicated Server VLAN (VLAN 50)
-- ✅ Verified end-to-end connectivity between all VLANs
-- ✅ Resolved VLAN trunking issue through structured troubleshooting
+✅ VLAN segmentation for five departments (Admin, Finance, HR, IT, Servers)
+✅ Router-on-a-Stick (Inter-VLAN Routing)
+✅ 802.1Q Trunk Configuration
+✅ Dedicated Server VLAN (VLAN 50)
+✅ Centralized DHCP Server
+✅ DHCP Relay using `ip helper-address`
+✅ Automatic IP Address Assignment
+✅ End-to-End Inter-VLAN Connectivity
 
 ### 🚧 In Progress
 
@@ -117,10 +117,15 @@ This project strengthened my understanding of:
 - IEEE 802.1Q trunking.
 - Systematic troubleshooting using Cisco IOS verification commands.
 - The importance of validating configurations before making changes.
+- Learned how DHCP works in enterprise networks.
+- Configured a centralized DHCP server for multiple VLANs.
+- Used DHCP Relay (`ip helper-address`) to forward DHCP requests across VLANs.
+- Verified automatic IP assignment and successful inter-VLAN communication.
 
 ## Project Screenshots
 
 ### Enterprise Network Diagram
 
 ![Enterprise Network Diagram](Screenshots/Enterprise-Network-Diagram.png)
+![Enterprise Network Diagram](TheDHCPconfigurationontheserver.png)
 
