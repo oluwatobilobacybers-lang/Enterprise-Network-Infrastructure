@@ -127,5 +127,4 @@ This project strengthened my understanding of:
 ### Enterprise Network Diagram
 
 ![Enterprise Network Diagram](Screenshots/Enterprise-Network-Diagram.png)
-![Enterprise Network Diagram](TheDHCPconfigurationontheserver.png)
 
