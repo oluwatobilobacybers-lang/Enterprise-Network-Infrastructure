@@ -117,3 +117,13 @@ This project strengthened my understanding of:
 - IEEE 802.1Q trunking.
 - Systematic troubleshooting using Cisco IOS verification commands.
 - The importance of validating configurations before making changes.
+
+## Project Screenshots
+
+### Enterprise Network Diagram
+
+![Enterprise Network Diagram](Screenshots/Enterprise-Network-Diagram.png)
+
+### Network Topology with Server
+
+![Vlan's creation and configuration](Screenshots/Vlans-creation-and-configuration.png)
