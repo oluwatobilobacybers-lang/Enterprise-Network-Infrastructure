@@ -50,6 +50,10 @@ Departments included:
 ✅ Enterprise DNS Server
 ✅ Internal DNS Records
 ✅ Hostname Resolution
+✅ Enterprise Web Server
+✅ Internal Company Website
+✅ DNS-Based Web Access
+✅ HTTP Service Deployment
 
 ### 🚧 In Progress
 
@@ -128,6 +132,10 @@ This project strengthened my understanding of:
 - Created DNS A records for internal services.
 - Verified hostname resolution from client PCs.
 - Learned how DNS integrates with DHCP to provide automatic name resolution.
+- Configured an enterprise HTTP server.
+- Created and deployed a custom HTML homepage.
+- Verified web access using both IP address and DNS hostname.
+- Understood the relationship between DNS and HTTP services.
 
 ## Project Screenshots
 
