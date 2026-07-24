@@ -88,8 +88,9 @@ Enterprise-Network-Infrastructure/
 - FTP User Authentication
 - Secure Shell (SSH) Remote Management
 - RSA Key Generation
+- SSH Version 2
 - Local User Authentication
-- SSH Version 2 Configuration
+- Secure VTY Configuration
 
 ## Testing & Verification
 
@@ -175,10 +176,10 @@ This project strengthened my understanding of:
 - Configured and tested FTP user authentication.
 - Observed that Cisco Packet Tracer simulates FTP functionality but has limitations compared to production FTP servers.
 - Configured Secure Shell (SSH) for encrypted remote device management.
-- Generated RSA keys to enable secure communications.
-- Configured local user authentication for administrative access.
-- Disabled Telnet by restricting remote access to SSH only.
-
+- Generated RSA keys to secure remote administrative access.
+- Configured local user authentication for privileged access.
+- Restricted VTY lines to SSH, eliminating insecure Telnet access.
+- Verified successful remote login using SSH.
 
 ## Skills Demonstrated
 
@@ -225,6 +226,15 @@ This project strengthened my understanding of:
 ### SSH Login
 
 ![SSH Login](Screenshots/ssh-login.png)
+
+### SSH Configuration
+
+![SSH Configuration](Screenshots/ssh-configuration.png)
+
+### RSA Key Generation
+
+![RSA Key Generation](Screenshots/rsa-key-generation.png)
+
 
 ## Future Improvements
 
