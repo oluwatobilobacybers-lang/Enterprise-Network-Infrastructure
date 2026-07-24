@@ -124,6 +124,3 @@ This project strengthened my understanding of:
 
 ![Enterprise Network Diagram](Screenshots/Enterprise-Network-Diagram.png)
 
-### Network Topology with Server
-
-![Vlan's creation and configuration](Screenshots/Vlans-creation-and-configuration.png)
