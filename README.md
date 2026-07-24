@@ -41,12 +41,12 @@ Departments included:
 
 ### ✅ Completed
 
-- VLAN Creation
-- VLAN Port Assignment
-- Trunk Configuration
-- Router-on-a-Stick
-- Inter-VLAN Routing
-- Connectivity Testing
+- ✅ Created and configured VLANs (10, 20, 30, 40, 50)
+- ✅ Configured trunk links between the switch and router
+- ✅ Implemented Router-on-a-Stick for Inter-VLAN Routing
+- ✅ Added a dedicated Server VLAN (VLAN 50)
+- ✅ Verified end-to-end connectivity between all VLANs
+- ✅ Resolved VLAN trunking issue through structured troubleshooting
 
 ### 🚧 In Progress
 
@@ -73,7 +73,9 @@ Departments included:
 
 **Banjo Oluwatobiloba Adekunle**
 
-Aspiring Cybersecurity Analyst | ISC² Certified in Cybersecurity (CC) | CompTIA Security+
+Aspiring Cybersecurity Analyst | ISC² CC | CompTIA Security+ | CEH Candidate
+
+Connect with me on LinkedIn.
 
 ## Troubleshooting
 
@@ -105,3 +107,13 @@ After verifying the trunk configuration, connectivity between the router and the
 ```bash
 show interfaces trunk
 ```
+
+## Lessons Learned
+
+This project strengthened my understanding of:
+
+- VLAN segmentation and network design.
+- Router-on-a-Stick configuration.
+- IEEE 802.1Q trunking.
+- Systematic troubleshooting using Cisco IOS verification commands.
+- The importance of validating configurations before making changes.
