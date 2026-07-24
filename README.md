@@ -86,6 +86,10 @@ Enterprise-Network-Infrastructure/
 - Internal HTTP Web Server
 - Enterprise FTP Server
 - FTP User Authentication
+- Secure Shell (SSH) Remote Management
+- RSA Key Generation
+- Local User Authentication
+- SSH Version 2 Configuration
 
 ## Testing & Verification
 
@@ -137,7 +141,7 @@ show interfaces trunk
 - [x] DNS
 - [x] HTTP Server
 - [x] FTP Server
-- [ ] SSH
+- [x] SSH
 - [ ] Standard ACLs
 - [ ] Extended ACLs
 - [ ] Port Security
@@ -170,6 +174,10 @@ This project strengthened my understanding of:
 - Learned how FTP provides centralized file transfer services in enterprise networks.
 - Configured and tested FTP user authentication.
 - Observed that Cisco Packet Tracer simulates FTP functionality but has limitations compared to production FTP servers.
+- Configured Secure Shell (SSH) for encrypted remote device management.
+- Generated RSA keys to enable secure communications.
+- Configured local user authentication for administrative access.
+- Disabled Telnet by restricting remote access to SSH only.
 
 
 ## Skills Demonstrated
@@ -213,6 +221,10 @@ This project strengthened my understanding of:
 ### FTP Authentication
 
 ![FTP User Accounts](Screenshots/ftp-user-authentication.png)
+
+### SSH Login
+
+![SSH Login](Screenshots/ssh-login.png)
 
 ## Future Improvements
 
