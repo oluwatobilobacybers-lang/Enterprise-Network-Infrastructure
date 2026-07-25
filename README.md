@@ -68,12 +68,16 @@ Enterprise-Network-Infrastructure/
 ├── Enterprise-Network-Infrastructure.pkt
 └── Screenshots/
     ├── enterprise-network-diagram.png
-    ├── vlan-configuration.png
+    ├── vlan-creation-and-configuration.png
     ├── vlan-trunk-configuration.png
     ├── dhcp-server-configuration.png
     ├── http-homepage.png
     ├── web-server-test.png
-    └── ftp-user-authentication.png
+    ├── ftp-user-authentication.png
+    ├── ssh-login.png
+    ├── ssh-configuration.png
+    ├── rsa-key-generation.png
+    └── acl-configuration.png
 ```
 
 ## Features Implemented
@@ -105,6 +109,10 @@ The following tests were successfully completed:
 - Verified DNS hostname resolution.
 - Successfully accessed the internal web server using both IP address and DNS hostname.
 - Successfully authenticated to the FTP server from multiple VLANs.
+- Successfully established encrypted SSH remote access using a local administrator account.
+- Verified SSH Version 2 configuration and RSA key generation.
+- Confirmed Standard ACL functionality by restricting Finance VLAN access to the HR VLAN.
+- Verified authorized traffic continued to pass after ACL implementation.
   
 ## Troubleshooting
 
@@ -205,6 +213,9 @@ This project strengthened my understanding of:
 - Access Control Lists (ACLs)
 - Network Access Control
 - Enterprise Security Policy Implementation
+- SSH Configuration
+- Cisco IOS Security
+- Secure Remote Administration
 
 ## Project Screenshots
 
@@ -220,7 +231,7 @@ This project strengthened my understanding of:
 
 ![Trunk Configuration](Screenshots/vlan-trunk-configuration.png)
 
-### DNS Configuration
+### DHCP Configuration
 
 ![DHCP Configuration](Screenshots/dhcp-server-configuration.png)
 
@@ -253,14 +264,18 @@ This project strengthened my understanding of:
 
 The following enhancements are planned to further strengthen the enterprise network:
 
-- [ ] Configure SSH for secure remote management of network devices.
-- [ ] Implement Standard and Extended Access Control Lists (ACLs) to enforce network access policies.
 - [ ] Configure Switch Port Security to prevent unauthorized device connections.
 - [ ] Apply Switch Security Hardening (disable unused ports, secure management access, and implement security best practices).
 - [ ] Configure Syslog for centralized logging and monitoring.
 - [ ] Configure NTP for synchronized network device timekeeping.
 - [ ] Implement Network Address Translation (NAT) for Internet connectivity simulation.
 - [ ] Perform comprehensive end-to-end testing and finalize project documentation.
+
+## Conclusion
+
+This project demonstrates the implementation of a secure enterprise network using Cisco Packet Tracer. It incorporates VLAN segmentation, inter-VLAN routing, centralized network services, secure remote management, and access control mechanisms commonly deployed in enterprise environments.
+
+Throughout the project, I gained hands-on experience in network design, configuration, troubleshooting, and security while documenting each implementation phase using industry-standard practices.
 
 ## Author
 
