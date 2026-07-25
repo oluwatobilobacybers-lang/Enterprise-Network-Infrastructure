@@ -57,6 +57,7 @@ Departments included:
 - DNS
 - HTTP
 - FTP
+- Standard ACLs
 
 ## Repository Structure
 
@@ -91,6 +92,9 @@ Enterprise-Network-Infrastructure/
 - SSH Version 2
 - Local User Authentication
 - Secure VTY Configuration
+- Standard Access Control Lists (ACLs)
+- Inter-VLAN Traffic Filtering
+- Department-Based Access Control
 
 ## Testing & Verification
 
@@ -143,7 +147,7 @@ show interfaces trunk
 - [x] HTTP Server
 - [x] FTP Server
 - [x] SSH
-- [ ] Standard ACLs
+- [x] Standard ACLs
 - [ ] Extended ACLs
 - [ ] Port Security
 - [ ] Switch Hardening
@@ -180,6 +184,9 @@ This project strengthened my understanding of:
 - Configured local user authentication for privileged access.
 - Restricted VTY lines to SSH, eliminating insecure Telnet access.
 - Verified successful remote login using SSH.
+- Configured Standard Access Control Lists to restrict inter-VLAN communication.
+- Applied ACLs to router subinterfaces to enforce security policies.
+- Verified access restrictions through connectivity testing.
 
 ## Skills Demonstrated
 
@@ -195,6 +202,9 @@ This project strengthened my understanding of:
 - Network Troubleshooting
 - Cisco IOS Configuration
 - Technical Documentation
+- Access Control Lists (ACLs)
+- Network Access Control
+- Enterprise Security Policy Implementation
 
 ## Project Screenshots
 
@@ -235,6 +245,9 @@ This project strengthened my understanding of:
 
 ![RSA Key Generation](Screenshots/rsa-key-generation.png)
 
+### ACL Configuration
+
+![ACL Configuration](Screenshots/acl-configuration.png)
 
 ## Future Improvements
 
