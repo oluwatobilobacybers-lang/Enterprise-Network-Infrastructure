@@ -14,17 +14,20 @@
 ![Extended ACL](https://img.shields.io/badge/Extended_ACL-Configured-success?style=for-the-badge)
 
 ![Project](https://img.shields.io/badge/Project-Enterprise_Network-blue?style=for-the-badge)
-![Status](https://img.shields.io/badge/Status-In_Progress-yellow?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Phase_4_Complete-brightgreen?style=for-the-badge)
 
-🚧 **Status:** In Progress
+🚧 Status: Phase 4 Complete — Phase 5 (Switch Hardening) In Progress
 
 ## Table of Contents
 
 - [Overview](#overview)
 - [Business Scenario](#business-scenario)
+- [Project Timeline](#project-timeline)
+- [Design Decisions](#design-decisions)
 - [Prerequisites](#prerequisites)
 - [Enterprise Network Summary](#enterprise-network-summary)
 - [Project Objectives](#project-objectives)
+- [Architecture Overview](#architecture-overview)
 - [Network Topology](#network-topology)
 - [IP Addressing Scheme](#ip-addressing-scheme)
 - [Technologies Used](#technologies-used)
@@ -39,6 +42,8 @@
 - [Configuration Highlights](#configuration-highlights)
 - [Project Screenshots](#project-screenshots)
 - [Project Metrics](#project-metrics)
+- [Security Features](#security-features)
+- [Security Architecture](#security-architecture)
 - [Future Improvements](#future-improvements)
 - [Conclusion](#conclusion)
 - [Author](#author)
@@ -64,6 +69,30 @@ This project addresses those requirements by implementing:
 
 The resulting design improves scalability, security, and manageability while reflecting networking practices commonly used in enterprise environments.
 
+## Project Timeline
+
+| Phase | Description | Status |
+|-------|-------------|:------:|
+| 1 | VLAN Segmentation | ✅ |
+| 2 | Inter-VLAN Routing | ✅ |
+| 3 | Enterprise Services (DHCP, DNS, HTTP, FTP) | ✅ |
+| 4 | Network Security (SSH, ACLs, Port Security) | ✅ |
+| 5 | Switch Hardening | ⏳ |
+| 6 | Syslog & NTP | ⏳ |
+| 7 | NAT & Final Documentation | ⏳ |
+
+## Design Decisions
+
+Several design decisions were made to improve scalability, security, and maintainability:
+
+- Router-on-a-Stick was selected due to the small network size.
+- Each department was isolated into its own VLAN.
+- Centralized services were placed in a dedicated Server VLAN.
+- DHCP Relay was used instead of multiple DHCP servers.
+- SSH replaced Telnet for secure remote management.
+- ACLs were applied to enforce departmental security policies.
+- Port Security was configured to prevent unauthorized endpoint connections.
+
 ## Prerequisites
 
 To explore or replicate this project, you should have:
@@ -88,6 +117,18 @@ The project follows industry best practices for network segmentation, service de
 - Verify connectivity between departments
 - Document network configurations and testing
 
+## Architecture Overview
+
+The enterprise network consists of a Cisco 2911 router connected to a Catalyst 2960 switch using IEEE 802.1Q trunking. Five VLANs provide logical segmentation for departmental traffic, while centralized services (DHCP, DNS, HTTP, and FTP) are hosted within a dedicated Server VLAN. Inter-VLAN communication is enabled through Router-on-a-Stick, and multiple security mechanisms—including ACLs, SSH, and Port Security—protect both management access and endpoint connectivity.
+
+## Network Services
+Service                	Purpose
+DHCP	                Automatic IP address allocation
+DNS	                    Internal hostname resolution
+HTTP	                Internal web application hosting
+FTP	                    File transfer services
+SSH	                    Secure remote device administration
+
 ## Network Topology
 
 Departments included:
@@ -109,7 +150,7 @@ Departments included:
 | Router VLAN 30 Gateway | 192.168.30.1 |
 | Router VLAN 40 Gateway | 192.168.40.1 |
 | Router VLAN 50 Gateway | 192.168.50.1 |
-| Enterprise Server | 192.168.50.2 |
+| Enterprise Server  | 192.168.50.2 |
 | DHCP Scope VLAN 10 | 192.168.10.100-199 |
 | DHCP Scope VLAN 20 | 192.168.20.100-199 |
 | DHCP Scope VLAN 30 | 192.168.30.100-199 |
@@ -117,22 +158,33 @@ Departments included:
 
 ## Technologies Used
 
-- Cisco Packet Tracer 8.2.2
-- Cisco 2911 Integrated Services Router
-- Cisco Catalyst 2960 Switch
-- VLAN Segmentation
-- IEEE 802.1Q Trunking
-- Router-on-a-Stick
-- Inter-VLAN Routing
-- DHCP
-- DHCP Relay (ip helper-address)
-- DNS
-- HTTP
-- FTP
-- SSH Version 2
-- RSA Encryption
-- Standard ACLs
-- Extended ACLs
+• Cisco Packet Tracer 8.2.2
+
+Hardware
+• Cisco 2911 Router
+• Cisco Catalyst 2960 Switch
+
+Layer 2 Technologies
+• VLAN Segmentation
+• IEEE 802.1Q Trunking
+• Port Security
+
+Layer 3 Technologies
+• Router-on-a-Stick
+• Inter-VLAN Routing
+
+Network Services
+• DHCP
+• DHCP Relay
+• DNS
+• HTTP
+• FTP
+
+Security
+• SSH Version 2
+• RSA Encryption
+• Standard ACLs
+• Extended ACLs
 
 ## Repository Structure
 
@@ -156,7 +208,11 @@ Enterprise-Network-Infrastructure/
     ├── acl-configuration.png
     ├── extended-acl-verification.png
     ├── show-extended-acl.png
-    └── show-access-lists.png
+    ├── show-access-lists.png
+    ├── show-port-security.png
+    ├── show-port-security-address.png
+    ├── show-port-security-interface-fa01.png
+    └── ping-report-after-disconnecting-admin-pc.png
 ```
 
 ## Key Achievements
@@ -188,6 +244,10 @@ Enterprise-Network-Infrastructure/
 - Department-Based Access Control
 - Extended Access Control Lists (ACLs)
 - Protocol-specific traffic filtering
+- Switch Port Security
+- Sticky MAC Address Learning
+- MAC Address Limiting
+- Violation Protection (Restrict Mode)
 
 ## Testing & Verification
 
@@ -203,6 +263,7 @@ The following tests were successfully completed:
 - Confirmed Standard ACL functionality by restricting Finance VLAN access to the HR VLAN.
 - Verified authorized traffic continued to pass after ACL implementation.
 - Verified Extended ACLs by restricting specific application traffic while allowing authorized communication between departments.
+- Verified Port Security by confirming Sticky MAC address learning, maximum MAC address limits, violation mode, and restricted access for unauthorized devices.
   
 ## Troubleshooting
 
@@ -247,7 +308,7 @@ show interfaces trunk
 - [x] SSH
 - [x] Standard ACLs
 - [x] Extended ACLs
-- [ ] Port Security
+- [x] Port Security
 - [ ] Switch Hardening
 - [ ] Syslog
 - [ ] NTP
@@ -288,6 +349,10 @@ This project strengthened my understanding of:
 - Learned the difference between Standard and Extended ACLs.
 - Applied Extended ACLs to filter traffic based on source, destination, and protocol.
 - Understood the importance of placing Extended ACLs close to the traffic source.
+- Configured Port Security to restrict unauthorized devices.
+- Learned Sticky MAC address learning.
+- Verified violation counters using show port-security.
+- Understood Restrict, Protect and Shutdown violation modes.
 
 ## Skills Demonstrated
 
@@ -313,8 +378,13 @@ This project strengthened my understanding of:
 - Cisco IOS Security
 - Enterprise Network Security
 - Network Documentation
+- Layer 2 Security
+- Switch Security
+- Cisco Port Security
 
 ## Configuration Highlights
+
+### Layer 2 Configuration
 
 ### VLAN Configuration
 
@@ -343,6 +413,19 @@ interface GigabitEthernet0/1
  switchport trunk allowed vlan 10,20,30,40,50
 ```
 
+### Port Security
+
+```cisco
+interface FastEthernet0/1
+ switchport mode access
+ switchport port-security
+ switchport port-security maximum 1
+ switchport port-security mac-address sticky
+ switchport port-security violation restrict
+```
+
+### Layer 3 Configuration
+
 ### Router-on-a-Stick
 
 ```cisco
@@ -357,7 +440,7 @@ interface GigabitEthernet0/0.20
 
 ### DHCP Relay
 
-```
+```cisco
 interface GigabitEthernet0/0.10
  ip helper-address 192.168.50.2
 
@@ -370,6 +453,9 @@ interface GigabitEthernet0/0.30
 interface GigabitEthernet0/0.40
  ip helper-address 192.168.50.2
 ```
+
+### Security Configuration
+
 ### SSH Configuration
 
 ```cisco
@@ -400,6 +486,7 @@ ip access-list extended BLOCK_HTTP
  permit ip any any
 ```
 
+
 ## Verification Commands
 
 The following Cisco IOS commands were used to verify the network configuration:
@@ -415,6 +502,9 @@ show access-lists
 show running-config
 show ssh
 show users
+show port-security
+show port-security interface fa0/1
+show port-security address
 ```
 
 ## Project Screenshots
@@ -478,18 +568,31 @@ The enterprise topology consists of five VLANs connected through Router-on-a-Sti
 
 ![Show Extended ACL](Screenshots/show-access-lists.png)
 
+### Port Security Verification
+
+Port Security was verified using Cisco IOS verification commands to confirm secure MAC address learning, configured maximum MAC addresses, violation mode, and interface protection after connecting an unauthorized device.
+
+![Show Port Security](Screenshots/show-port-security.png)
+
+![Show Port Security Address](Screenshots/show-port-security-address.png)
+
+![Show Port Security Interface](Screenshots/show-port-security-interface-fa01.png)
+
+![Show Ping Report](Screenshots/ping-report-after-disconnecting-admin-pc.png)
+
+
 ## Project Metrics
 
-| Item                  | Count |
-| --------------------- | ----: |
-| VLANs                 |     5 |
-| Router                |     1 |
-| Switches              |     1 |
-| PCs                   |     8 |
-| Servers               |     1 |
-| Enterprise Services   |     6 |
-| ACL Types             |     2 |
-| Security Technologies |     7 |
+| Item                      | Count |
+| ------------------------- | ----: |
+| VLANs                     |     5 |
+| Router                    |     1 |
+| Switches                  |     1 |
+| PCs                       |     8 |
+| Servers                   |     1 |
+| Network Services          |     6 |
+| ACL Types                 |     2 |
+| Security Technologies     |    11 |
 
 ## Security Features
 
@@ -504,23 +607,64 @@ The following security mechanisms have been implemented:
 - Secure VTY Access
 - Telnet Disabled
 - Department-Based Traffic Filtering
+- Port Security
+- Sticky MAC Address Learning
+- MAC Address Limiting
+- Unauthorized Device Protection
+
+## Security Architecture
+
+The network adopts a defense-in-depth security model by implementing complementary security controls at multiple layers of the network, including Layer 2 switching and Layer 3 routing. Network segmentation, traffic filtering, secure device management, and endpoint protection work together to reduce the attack surface and mitigate unauthorized access.
+
+Implemented security technologies include:
+
+| Security Technology | Purpose |
+|---------------------|---------|
+| VLAN Segmentation | Isolates departmental traffic |
+| Standard ACLs | Restricts network access between VLANs |
+| Extended ACLs | Filters traffic by protocol, source, and destination |
+| SSH Version 2 | Provides encrypted remote administration |
+| RSA Encryption | Secures SSH key exchange |
+| Local User Authentication | Restricts administrative access |
+| Secure VTY Configuration | Disables Telnet and permits SSH only |
+| Port Security | Prevents unauthorized endpoint connections |
+| Sticky MAC Address Learning | Dynamically learns and secures trusted devices |
+
+These layered controls help reduce unauthorized access while protecting enterprise resources.
+
 
 ## Future Improvements
 
-The following enhancements are planned to further strengthen the enterprise network:
+The following enhancements are planned for upcoming project phases:
 
-- [ ] Configure Switch Port Security to prevent unauthorized device connections.
-- [ ] Apply Switch Security Hardening (disable unused ports, secure management access, and implement security best practices).
-- [ ] Configure Syslog for centralized logging and monitoring.
-- [ ] Configure NTP for synchronized network device timekeeping.
-- [ ] Implement Network Address Translation (NAT) for Internet connectivity simulation.
-- [ ] Perform comprehensive end-to-end testing and finalize project documentation.
+### Phase 5 — Switch Hardening
+
+- [ ] Disable unused switch ports
+- [ ] Assign unused ports to an unused VLAN
+- [ ] Configure PortFast on access ports
+- [ ] Enable BPDU Guard
+- [ ] Secure switch management interfaces
+
+###Phase 6 — Network Monitoring & Management
+
+- [ ] Configure Syslog server
+- [ ] Configure Network Time Protocol (NTP)
+
+### Phase 7 — Internet Connectivity
+
+- [ ] Configure Network Address Translation (NAT)
+- [ ] Perform comprehensive end-to-end testing
+- [ ] Finalize project documentation
 
 ## Conclusion
 
 This project demonstrates the implementation of a secure enterprise network using Cisco Packet Tracer. It incorporates VLAN segmentation, inter-VLAN routing, centralized network services, secure remote management, and access control mechanisms commonly deployed in enterprise environments.
 
 Throughout the project, I gained hands-on experience in network design, configuration, troubleshooting, and security while documenting each implementation phase using industry-standard practices.
+
+## Disclaimer
+
+This project was developed in Cisco Packet Tracer for educational and portfolio purposes. While it demonstrates enterprise networking concepts and security best practices, certain behaviors may differ from production Cisco IOS devices.
 
 ## Author
 
