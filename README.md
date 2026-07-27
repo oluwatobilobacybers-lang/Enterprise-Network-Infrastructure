@@ -1,12 +1,83 @@
 # Enterprise Network Infrastructure
 
+![Cisco](https://img.shields.io/badge/Cisco-Packet_Tracer-1BA0D7?style=for-the-badge&logo=cisco&logoColor=white)
+![Router](https://img.shields.io/badge/Router-2911-blue?style=for-the-badge)
+![Switch](https://img.shields.io/badge/Switch-Catalyst_2960-blue?style=for-the-badge)
+![VLAN](https://img.shields.io/badge/VLAN-Configured-success?style=for-the-badge)
+![Inter-VLAN Routing](https://img.shields.io/badge/Inter--VLAN-Routing-success?style=for-the-badge)
+![DHCP](https://img.shields.io/badge/DHCP-Configured-success?style=for-the-badge)
+![DNS](https://img.shields.io/badge/DNS-Configured-success?style=for-the-badge)
+![HTTP](https://img.shields.io/badge/HTTP-Web_Server-success?style=for-the-badge)
+![FTP](https://img.shields.io/badge/FTP-Configured-success?style=for-the-badge)
+![SSH](https://img.shields.io/badge/SSH-Secured-success?style=for-the-badge)
+![Standard ACL](https://img.shields.io/badge/Standard_ACL-Configured-success?style=for-the-badge)
+![Extended ACL](https://img.shields.io/badge/Extended_ACL-Configured-success?style=for-the-badge)
+
+![Project](https://img.shields.io/badge/Project-Enterprise_Network-blue?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-In_Progress-yellow?style=for-the-badge)
+
 🚧 **Status:** In Progress
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Business Scenario](#business-scenario)
+- [Prerequisites](#prerequisites)
+- [Enterprise Network Summary](#enterprise-network-summary)
+- [Project Objectives](#project-objectives)
+- [Network Topology](#network-topology)
+- [IP Addressing Scheme](#ip-addressing-scheme)
+- [Technologies Used](#technologies-used)
+- [Repository Structure](#repository-structure)
+- [Key Achievements](#key-achievements)
+- [Features Implemented](#features-implemented)
+- [Testing & Verification](#testing--verification)
+- [Troubleshooting](#troubleshooting)
+- [Current Progress](#current-progress)
+- [Lessons Learned](#lessons-learned)
+- [Skills Demonstrated](#skills-demonstrated)
+- [Configuration Highlights](#configuration-highlights)
+- [Project Screenshots](#project-screenshots)
+- [Project Metrics](#project-metrics)
+- [Future Improvements](#future-improvements)
+- [Conclusion](#conclusion)
+- [Author](#author)
 
 ## Overview
 
 This project demonstrates the design and implementation of a secure enterprise network infrastructure using Cisco Packet Tracer. It showcases network segmentation, inter-VLAN routing, centralized network services, and foundational security controls commonly used in enterprise environments.
 
 The objective is to build a secure and scalable network that supports multiple departments through VLAN segmentation and Inter-VLAN Routing.
+
+## Business Scenario
+
+A growing enterprise requires a secure and scalable network to support multiple departments while maintaining centralized services and controlled communication between business units.
+
+This project addresses those requirements by implementing:
+
+- VLAN segmentation
+- Inter-VLAN Routing
+- Enterprise DHCP and DNS services
+- Secure SSH remote administration
+- Standard and Extended ACLs
+- Centralized web and file services
+
+The resulting design improves scalability, security, and manageability while reflecting networking practices commonly used in enterprise environments.
+
+## Prerequisites
+
+To explore or replicate this project, you should have:
+
+- Cisco Packet Tracer 8.2.2 or later
+- Basic understanding of IPv4 addressing
+- Familiarity with Cisco IOS CLI
+- Basic networking concepts (VLANs, Routing, DHCP)
+
+## Enterprise Network Summary
+
+This project simulates an enterprise network consisting of five departmental VLANs connected through Router on a Stick architecture. Core enterprise services, including DHCP, DNS, HTTP, FTP, SSH, and Access Control Lists (ACLs), were implemented to provide centralized management, secure communication, and controlled network access.
+
+The project follows industry best practices for network segmentation, service deployment, and security while demonstrating practical Cisco IOS configuration and troubleshooting skills.
 
 ## Project Objectives
 
@@ -54,10 +125,14 @@ Departments included:
 - Router-on-a-Stick
 - Inter-VLAN Routing
 - DHCP
+- DHCP Relay (ip helper-address)
 - DNS
 - HTTP
 - FTP
+- SSH Version 2
+- RSA Encryption
 - Standard ACLs
+- Extended ACLs
 
 ## Repository Structure
 
@@ -71,14 +146,26 @@ Enterprise-Network-Infrastructure/
     ├── vlan-creation-and-configuration.png
     ├── vlan-trunk-configuration.png
     ├── dhcp-server-configuration.png
+    ├── dns-service-enabled-record.png
     ├── http-homepage.png
     ├── web-server-test.png
     ├── ftp-user-authentication.png
     ├── ssh-login.png
     ├── ssh-configuration.png
     ├── rsa-key-generation.png
-    └── acl-configuration.png
+    ├── acl-configuration.png
+    ├── extended-acl-verification.png
+    ├── show-extended-acl.png
+    └── show-access-lists.png
 ```
+
+## Key Achievements
+
+- Designed and deployed a segmented enterprise network supporting five business departments.
+- Implemented centralized DHCP, DNS, HTTP, and FTP services.
+- Secured remote administration using SSH Version 2 with RSA encryption.
+- Implemented Standard and Extended ACLs to enforce enterprise security policies.
+- Successfully validated Layer 2, Layer 3, and enterprise network services through comprehensive connectivity, routing, and security testing.
 
 ## Features Implemented
 
@@ -99,6 +186,8 @@ Enterprise-Network-Infrastructure/
 - Standard Access Control Lists (ACLs)
 - Inter-VLAN Traffic Filtering
 - Department-Based Access Control
+- Extended Access Control Lists (ACLs)
+- Protocol-specific traffic filtering
 
 ## Testing & Verification
 
@@ -113,6 +202,7 @@ The following tests were successfully completed:
 - Verified SSH Version 2 configuration and RSA key generation.
 - Confirmed Standard ACL functionality by restricting Finance VLAN access to the HR VLAN.
 - Verified authorized traffic continued to pass after ACL implementation.
+- Verified Extended ACLs by restricting specific application traffic while allowing authorized communication between departments.
   
 ## Troubleshooting
 
@@ -156,7 +246,7 @@ show interfaces trunk
 - [x] FTP Server
 - [x] SSH
 - [x] Standard ACLs
-- [ ] Extended ACLs
+- [x] Extended ACLs
 - [ ] Port Security
 - [ ] Switch Hardening
 - [ ] Syslog
@@ -195,6 +285,9 @@ This project strengthened my understanding of:
 - Configured Standard Access Control Lists to restrict inter-VLAN communication.
 - Applied ACLs to router subinterfaces to enforce security policies.
 - Verified access restrictions through connectivity testing.
+- Learned the difference between Standard and Extended ACLs.
+- Applied Extended ACLs to filter traffic based on source, destination, and protocol.
+- Understood the importance of placing Extended ACLs close to the traffic source.
 
 ## Skills Demonstrated
 
@@ -214,12 +307,121 @@ This project strengthened my understanding of:
 - Network Access Control
 - Enterprise Security Policy Implementation
 - SSH Configuration
-- Cisco IOS Security
 - Secure Remote Administration
+- Extended Access Control Lists
+- Traffic Filtering
+- Cisco IOS Security
+- Enterprise Network Security
+- Network Documentation
+
+## Configuration Highlights
+
+### VLAN Configuration
+
+```cisco
+vlan 10
+ name Admin
+
+vlan 20
+ name Finance
+
+vlan 30
+ name HR
+
+vlan 40
+ name IT
+
+vlan 50
+ name Servers
+```
+
+### Trunk Configuration
+
+```cisco
+interface GigabitEthernet0/1
+ switchport mode trunk
+ switchport trunk allowed vlan 10,20,30,40,50
+```
+
+### Router-on-a-Stick
+
+```cisco
+interface GigabitEthernet0/0.10
+ encapsulation dot1Q 10
+ ip address 192.168.10.1 255.255.255.0
+
+interface GigabitEthernet0/0.20
+ encapsulation dot1Q 20
+ ip address 192.168.20.1 255.255.255.0
+```
+
+### DHCP Relay
+
+```
+interface GigabitEthernet0/0.10
+ ip helper-address 192.168.50.2
+
+interface GigabitEthernet0/0.20
+ ip helper-address 192.168.50.2
+
+interface GigabitEthernet0/0.30
+ ip helper-address 192.168.50.2
+
+interface GigabitEthernet0/0.40
+ ip helper-address 192.168.50.2
+```
+### SSH Configuration
+
+```cisco
+hostname Enterprise-Router
+ip domain-name enterprise.local
+
+crypto key generate rsa
+
+username admin privilege 15 secret ********
+
+line vty 0 4
+ login local
+ transport input ssh
+```
+
+### Standard ACL
+
+```cisco
+access-list 10 deny 192.168.20.0 0.0.0.255
+access-list 10 permit any
+```
+
+### Extended ACL
+
+```cisco
+ip access-list extended BLOCK_HTTP
+ deny tcp 192.168.20.0 0.0.0.255 host 192.168.50.2 eq 80
+ permit ip any any
+```
+
+## Verification Commands
+
+The following Cisco IOS commands were used to verify the network configuration:
+
+```cisco
+show vlan brief
+show interfaces trunk
+show ip route
+show ip dhcp binding
+show ip dhcp pool
+show ip interface brief
+show access-lists
+show running-config
+show ssh
+show users
+```
 
 ## Project Screenshots
 
 ### Enterprise Network Diagram
+
+The enterprise topology consists of five VLANs connected through Router-on-a-Stick architecture with centralized DHCP, DNS, HTTP, FTP, and SSH services hosted in the Server VLAN.
 
 ![Enterprise Network Diagram](Screenshots/enterprise-network-diagram.png)
 
@@ -230,6 +432,10 @@ This project strengthened my understanding of:
 ### Trunk Configuration
 
 ![Trunk Configuration](Screenshots/vlan-trunk-configuration.png)
+
+### DNS Configuration
+
+![DNS Record](Screenshots/dns-service-enabled-record.png)
 
 ### DHCP Configuration
 
@@ -259,6 +465,45 @@ This project strengthened my understanding of:
 ### ACL Configuration
 
 ![ACL Configuration](Screenshots/acl-configuration.png)
+
+### Extended ACL Verification
+
+![Extended ACL Verification](Screenshots/extended-acl-verification.png)
+
+### Show Extended ACL Verification
+
+![Show Extended ACL](Screenshots/show-extended-acl.png)
+
+### Show Access Lists
+
+![Show Extended ACL](Screenshots/show-access-lists.png)
+
+## Project Metrics
+
+| Item                  | Count |
+| --------------------- | ----: |
+| VLANs                 |     5 |
+| Router                |     1 |
+| Switches              |     1 |
+| PCs                   |     8 |
+| Servers               |     1 |
+| Enterprise Services   |     6 |
+| ACL Types             |     2 |
+| Security Technologies |     7 |
+
+## Security Features
+
+The following security mechanisms have been implemented:
+
+- VLAN Segmentation
+- Standard ACLs
+- Extended ACLs
+- SSH Version 2
+- RSA Key Encryption
+- Local User Authentication
+- Secure VTY Access
+- Telnet Disabled
+- Department-Based Traffic Filtering
 
 ## Future Improvements
 
