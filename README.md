@@ -14,9 +14,21 @@
 ![Extended ACL](https://img.shields.io/badge/Extended_ACL-Configured-success?style=for-the-badge)
 
 ![Project](https://img.shields.io/badge/Project-Enterprise_Network-blue?style=for-the-badge)
-![Status](https://img.shields.io/badge/Status-Phase_4_Complete-brightgreen?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Phase_5_Complete-brightgreen?style=for-the-badge)
 
-🚧 Status: Phase 4 Complete — Phase 5 (Switch Hardening) In Progress
+🚧 **Current Status**
+
+✅ Phase 1 – VLAN Segmentation
+
+✅ Phase 2 – Inter-VLAN Routing
+
+✅ Phase 3 – Enterprise Services
+
+✅ Phase 4 – Network Security
+
+✅ Phase 5 – Switch Hardening
+
+🚀 Currently Working On: Phase 6 – Syslog & NTP
 
 ## Table of Contents
 
@@ -28,6 +40,7 @@
 - [Enterprise Network Summary](#enterprise-network-summary)
 - [Project Objectives](#project-objectives)
 - [Architecture Overview](#architecture-overview)
+- [Network Services](#network-services)
 - [Network Topology](#network-topology)
 - [IP Addressing Scheme](#ip-addressing-scheme)
 - [Technologies Used](#technologies-used)
@@ -40,10 +53,12 @@
 - [Lessons Learned](#lessons-learned)
 - [Skills Demonstrated](#skills-demonstrated)
 - [Configuration Highlights](#configuration-highlights)
+- [Verification Commands](#verification-commands)
 - [Project Screenshots](#project-screenshots)
 - [Project Metrics](#project-metrics)
 - [Security Features](#security-features)
 - [Security Architecture](#security-architecture)
+- [Switch Hardening](#switch-hardening)
 - [Future Improvements](#future-improvements)
 - [Conclusion](#conclusion)
 - [Author](#author)
@@ -77,7 +92,7 @@ The resulting design improves scalability, security, and manageability while ref
 | 2 | Inter-VLAN Routing | ✅ |
 | 3 | Enterprise Services (DHCP, DNS, HTTP, FTP) | ✅ |
 | 4 | Network Security (SSH, ACLs, Port Security) | ✅ |
-| 5 | Switch Hardening | ⏳ |
+| 5 | Switch Hardening | ✅ |
 | 6 | Syslog & NTP | ⏳ |
 | 7 | NAT & Final Documentation | ⏳ |
 
@@ -122,12 +137,14 @@ The project follows industry best practices for network segmentation, service de
 The enterprise network consists of a Cisco 2911 router connected to a Catalyst 2960 switch using IEEE 802.1Q trunking. Five VLANs provide logical segmentation for departmental traffic, while centralized services (DHCP, DNS, HTTP, and FTP) are hosted within a dedicated Server VLAN. Inter-VLAN communication is enabled through Router-on-a-Stick, and multiple security mechanisms—including ACLs, SSH, and Port Security—protect both management access and endpoint connectivity.
 
 ## Network Services
-Service                	Purpose
-DHCP	                Automatic IP address allocation
-DNS	                    Internal hostname resolution
-HTTP	                Internal web application hosting
-FTP	                    File transfer services
-SSH	                    Secure remote device administration
+
+| Service | Purpose |
+|---------|---------|
+| DHCP | Automatic IP address allocation |
+| DNS | Internal hostname resolution |
+| HTTP | Internal web application hosting |
+| FTP | File transfer services |
+| SSH | Secure remote device administration |
 
 ## Network Topology
 
@@ -160,31 +177,38 @@ Departments included:
 
 • Cisco Packet Tracer 8.2.2
 
-Hardware
-• Cisco 2911 Router
-• Cisco Catalyst 2960 Switch
+### Hardware
 
-Layer 2 Technologies
-• VLAN Segmentation
-• IEEE 802.1Q Trunking
-• Port Security
+- Cisco 2911 Router
+- Cisco Catalyst 2960 Switch
 
-Layer 3 Technologies
-• Router-on-a-Stick
-• Inter-VLAN Routing
+### Layer 2 Technologies
 
-Network Services
-• DHCP
-• DHCP Relay
-• DNS
-• HTTP
-• FTP
+- VLAN Segmentation
+- IEEE 802.1Q Trunking
+- Port Security
 
-Security
-• SSH Version 2
-• RSA Encryption
-• Standard ACLs
-• Extended ACLs
+### Layer 3 Technologies
+
+- Router-on-a-Stick
+- Inter-VLAN Routing
+
+### Network Services
+
+- DHCP
+- DHCP Relay
+- DNS
+- HTTP
+- FTP
+
+### Security
+
+- SSH Version 2
+- RSA Encryption
+- Standard ACLs
+- Extended ACLs
+- Port Security
+- Switch Hardening
 
 ## Repository Structure
 
@@ -213,6 +237,10 @@ Enterprise-Network-Infrastructure/
     ├── show-port-security-address.png
     ├── show-port-security-interface-fa01.png
     └── ping-report-after-disconnecting-admin-pc.png
+    ├── show-spanning-tree-summary.png
+    ├── show-bpduguard.png
+    ├── show-portfast.png
+    ├── show-unused-ports.png
 ```
 
 ## Key Achievements
@@ -222,6 +250,7 @@ Enterprise-Network-Infrastructure/
 - Secured remote administration using SSH Version 2 with RSA encryption.
 - Implemented Standard and Extended ACLs to enforce enterprise security policies.
 - Successfully validated Layer 2, Layer 3, and enterprise network services through comprehensive connectivity, routing, and security testing.
+- Hardened the enterprise switch using Cisco Layer 2 security best practices including PortFast, BPDU Guard, Management VLAN, and unused port protection.
 
 ## Features Implemented
 
@@ -248,6 +277,13 @@ Enterprise-Network-Infrastructure/
 - Sticky MAC Address Learning
 - MAC Address Limiting
 - Violation Protection (Restrict Mode)
+- Switch Hardening
+- Disabled Unused Switch Ports
+- Dedicated Unused VLAN (VLAN 999)
+- PortFast Configuration
+- BPDU Guard Protection
+- Administrative Port Shutdown
+- Management VLAN
 
 ## Testing & Verification
 
@@ -264,6 +300,10 @@ The following tests were successfully completed:
 - Verified authorized traffic continued to pass after ACL implementation.
 - Verified Extended ACLs by restricting specific application traffic while allowing authorized communication between departments.
 - Verified Port Security by confirming Sticky MAC address learning, maximum MAC address limits, violation mode, and restricted access for unauthorized devices.
+- Verified PortFast was enabled on all access ports.
+- Verified BPDU Guard protection on access interfaces.
+- Confirmed unused interfaces were assigned to VLAN 999.
+- Verified unused interfaces were administratively shut down.
   
 ## Troubleshooting
 
@@ -309,7 +349,7 @@ show interfaces trunk
 - [x] Standard ACLs
 - [x] Extended ACLs
 - [x] Port Security
-- [ ] Switch Hardening
+- [x] Switch Hardening
 - [ ] Syslog
 - [ ] NTP
 - [ ] NAT
@@ -353,6 +393,11 @@ This project strengthened my understanding of:
 - Learned Sticky MAC address learning.
 - Verified violation counters using show port-security.
 - Understood Restrict, Protect and Shutdown violation modes.
+- Implemented Layer 2 switch hardening using Cisco best practices.
+- Learned the importance of disabling unused switch ports.
+- Configured PortFast to reduce access-port startup delays.
+- Enabled BPDU Guard to protect against rogue switches.
+- Implemented a dedicated Management VLAN for improved administrative security.
 
 ## Skills Demonstrated
 
@@ -381,6 +426,12 @@ This project strengthened my understanding of:
 - Layer 2 Security
 - Switch Security
 - Cisco Port Security
+- Switch Hardening
+- Spanning Tree Protocol (STP)
+- Layer 2 Hardening
+- BPDU Guard
+- PortFast Configuration
+
 
 ## Configuration Highlights
 
@@ -486,6 +537,25 @@ ip access-list extended BLOCK_HTTP
  permit ip any any
 ```
 
+### Switch Hardening
+
+The switch was hardened using Cisco Layer 2 security best practices to reduce the attack surface, protect against unauthorized devices, and improve overall network resilience.
+
+```cisco
+spanning-tree portfast default
+spanning-tree portfast bpduguard default
+
+interface range FastEthernet0/10-24
+ switchport mode access
+ switchport access vlan 999
+ shutdown
+ description UNUSED_PORT
+
+interface FastEthernet0/1
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+```
+
 
 ## Verification Commands
 
@@ -494,17 +564,27 @@ The following Cisco IOS commands were used to verify the network configuration:
 ```cisco
 show vlan brief
 show interfaces trunk
-show ip route
-show ip dhcp binding
-show ip dhcp pool
-show ip interface brief
-show access-lists
-show running-config
-show ssh
-show users
+show interfaces status
+
+show spanning-tree summary
+show spanning-tree interface fa0/1 detail
+
 show port-security
 show port-security interface fa0/1
 show port-security address
+
+show ip interface brief
+show ip route
+
+show ip dhcp binding
+show ip dhcp pool
+
+show access-lists
+
+show ssh
+show users
+
+show running-config
 ```
 
 ## Project Screenshots
@@ -531,10 +611,12 @@ The enterprise topology consists of five VLANs connected through Router-on-a-Sti
 
 ![DHCP Configuration](Screenshots/dhcp-server-configuration.png)
 
-### Enterprise Web Server
+### Enterprise Web Server Configuration
 
 ![HTML Home Page](Screenshots/http-homepage.png)
+
 ![HTTP Web Server Test](Screenshots/web-server-test.png)
+
 
 ### FTP Authentication
 
@@ -580,19 +662,34 @@ Port Security was verified using Cisco IOS verification commands to confirm secu
 
 ![Show Ping Report](Screenshots/ping-report-after-disconnecting-admin-pc.png)
 
+### Switch Hardening Verification
+
+The switch hardening configuration was verified by confirming that PortFast and BPDU Guard were enabled globally, unused interfaces were assigned to VLAN 999 and administratively shut down, and spanning-tree settings were successfully applied.
+
+![Spanning Tree Summary](Screenshots/show-spanning-tree-summary.png)
+
+![BPDU Guard](Screenshots/show-bpduguard.png)
+
+![PortFast](Screenshots/show-portfast.png)
+
+![Unused Ports](Screenshots/show-unused-ports.png)
+
+The screenshots below validate that Layer 2 hardening was successfully implemented using PortFast, BPDU Guard, and secure handling of unused interfaces.
+
 
 ## Project Metrics
 
 | Item                      | Count |
 | ------------------------- | ----: |
-| VLANs                     |     5 |
-| Router                    |     1 |
-| Switches                  |     1 |
-| PCs                       |     8 |
-| Servers                   |     1 |
-| Network Services          |     6 |
-| ACL Types                 |     2 |
-| Security Technologies     |    11 |
+| VLANs                     | 5 |
+| Router                    | 1 |
+| Switches                  | 1 |
+| PCs                       | 8 |
+| Servers                   | 1 |
+| Network Services          | 6 |
+| Routing Technologies      | 2 |
+| Security Technologies     | 13 |
+| Hardening Techniques      | 5 |
 
 ## Security Features
 
@@ -611,6 +708,12 @@ The following security mechanisms have been implemented:
 - Sticky MAC Address Learning
 - MAC Address Limiting
 - Unauthorized Device Protection
+- Switch Hardening
+- PortFast
+- BPDU Guard
+- Unused Port Hardening
+- Management VLAN
+
 
 ## Security Architecture
 
@@ -618,43 +721,56 @@ The network adopts a defense-in-depth security model by implementing complementa
 
 Implemented security technologies include:
 
-| Security Technology | Purpose |
-|---------------------|---------|
-| VLAN Segmentation | Isolates departmental traffic |
-| Standard ACLs | Restricts network access between VLANs |
-| Extended ACLs | Filters traffic by protocol, source, and destination |
-| SSH Version 2 | Provides encrypted remote administration |
-| RSA Encryption | Secures SSH key exchange |
-| Local User Authentication | Restricts administrative access |
-| Secure VTY Configuration | Disables Telnet and permits SSH only |
-| Port Security | Prevents unauthorized endpoint connections |
+| Security Technology         | Purpose |
+|---------------------        |---------|
+| VLAN Segmentation           | Isolates departmental traffic |
+| Standard ACLs               | Restricts network access between VLANs |
+| Extended ACLs               | Filters traffic by protocol, source, and destination |
+| SSH Version 2               | Provides encrypted remote administration |
+| RSA Encryption              | Secures SSH key exchange |
+| Local User Authentication   | Restricts administrative access |
+| Secure VTY Configuration    | Disables Telnet and permits SSH only |
+| Port Security               | Prevents unauthorized endpoint connections |
 | Sticky MAC Address Learning | Dynamically learns and secures trusted devices |
+| PortFast	                  | Reduces access-port startup delay
+| BPDU Guard                  | Protects against rogue switches and STP attacks
+| Unused Port Hardening       | Disables unused interfaces to reduce the attack surface
+| Management VLAN	          | Separates management traffic from user traffic
 
 These layered controls help reduce unauthorized access while protecting enterprise resources.
+
+
+## Switch Hardening
+
+To strengthen Layer 2 security, several switch hardening measures were implemented following Cisco best practices.
+
+Implemented controls include:
+
+- Disabled unused switch ports
+- Assigned unused interfaces to VLAN 999
+- Administratively shut down unused interfaces
+- Enabled PortFast on access ports
+- Enabled BPDU Guard to protect against rogue switches
+- Configured a dedicated Management VLAN
+
+These controls reduce the attack surface, prevent unauthorized physical access, and improve the resilience of the enterprise switching infrastructure.
 
 
 ## Future Improvements
 
 The following enhancements are planned for upcoming project phases:
 
-### Phase 5 — Switch Hardening
+### Phase 6 — Network Monitoring & Management
 
-- [ ] Disable unused switch ports
-- [ ] Assign unused ports to an unused VLAN
-- [ ] Configure PortFast on access ports
-- [ ] Enable BPDU Guard
-- [ ] Secure switch management interfaces
+- [ ] Configure Syslog Server
+- [ ] Configure NTP
+- [ ] Centralize device logging
 
-###Phase 6 — Network Monitoring & Management
+### Phase 7 — Internet Connectivity & Finalization
 
-- [ ] Configure Syslog server
-- [ ] Configure Network Time Protocol (NTP)
-
-### Phase 7 — Internet Connectivity
-
-- [ ] Configure Network Address Translation (NAT)
-- [ ] Perform comprehensive end-to-end testing
-- [ ] Finalize project documentation
+- [ ] Configure NAT
+- [ ] Validate Internet connectivity
+- [ ] Finalize documentation
 
 ## Conclusion
 
