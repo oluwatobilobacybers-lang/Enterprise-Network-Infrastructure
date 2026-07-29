@@ -379,79 +379,31 @@ Clone the repository:
 git clone https://github.com/oluwatobilobacybers-lang/Enterprise-Network-Infrastructure.git
 ```
 
-1. Open the project using Cisco Packet Tracer 8.2.2 or later.
+### Setup
 
-2. Load Enterprise-Network-Infrastructure.pkt
+1. Open the project using **Cisco Packet Tracer 8.2.2** or later.
+2. Open `Enterprise-Network-Infrastructure.pkt`.
+3. Allow all devices to finish booting.
 
-3. Wait for all devices to finish booting.
+### Verification
 
-4. Test connectivity:
-- Ping between VLANs
-- Verify DHCP address assignment
-- Test DNS name resolution
-- Browse the internal web server
-- Connect to the FTP server
-- SSH into the Enterprise Router
-- Verify NAT using:
+Verify the network by performing the following tests:
 
+- Ping between VLANs.
+- Verify DHCP address assignment.
+- Test DNS hostname resolution.
+- Browse the internal web server.
+- Connect to the FTP server.
+- Establish an SSH session to the Enterprise Router.
+- Verify NAT using the following Cisco IOS commands:
+
+```cisco
 show ip nat translations
 show ip nat statistics
-
-5. Review the screenshots in the Screenshots folder for configuration verification.
-
-
----
-
-# 2. Which topology should you use?
-
-Use the **first (newer) topology**.
-
-Reasons:
-
-✅ Includes the ISP router
-
-✅ Includes the Enterprise Server
-
-✅ Includes VLAN 50
-
-✅ Shows NAT topology
-
-✅ Shows Internet simulation
-
-✅ Shows the final enterprise architecture
-
-This is exactly what employers expect to see.
-
----
-
-Do **not** use the second topology because it is missing:
-
-- Server VLAN
-- ISP Router
-- NAT
-- Syslog
-- NTP
-- Final architecture
-
-It represents an earlier phase of the project.
-
----
-
-## 3. I recommend one small improvement
-
-Instead of this:
-
-> Enterprise Network Diagram
-
-Write
-
-> **Final Enterprise Network Topology**
-
-Then beneath it write something like:
-
-```markdown
-The completed enterprise network consists of five departmental VLANs connected through Router-on-a-Stick architecture, centralized enterprise services (DHCP, DNS, HTTP, FTP), an ISP router for Internet simulation, and NAT Overload (PAT) for external connectivity.
 ```
+
+Finally, review the screenshots in the `Screenshots/` directory for implementation and configuration verification.
+
 
 
 ## Key Achievements
