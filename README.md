@@ -1180,10 +1180,11 @@ The final phase extended the project by implementing NAT Overload (PAT) and Inte
 
 This project was built by applying concepts learned through:
 
+- Cisco Networking Training
+- New Horizons System Solution Ltd
 - CompTIA Network+
 - CompTIA Security+
 - TS Academy Cybersecurity Program
-- New Horizons Nigeria – Cisco Networking Training
 
 ## References
 
