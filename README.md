@@ -14,7 +14,7 @@
 ![Extended ACL](https://img.shields.io/badge/Extended_ACL-Configured-success?style=for-the-badge)
 
 ![Project](https://img.shields.io/badge/Project-Enterprise_Network-blue?style=for-the-badge)
-![Status](https://img.shields.io/badge/Status-Phase_5_Complete-brightgreen?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Phase_6_Complete-brightgreen?style=for-the-badge)
 
 🚧 **Current Status**
 
@@ -28,7 +28,9 @@
 
 ✅ Phase 5 – Switch Hardening
 
-🚀 Currently Working On: Phase 6 – Syslog & NTP
+✅ Phase 6 – Syslog & NTP
+
+🚀 Currently Working On: Phase 7 – NAT & Final Documentation
 
 ## Table of Contents
 
@@ -93,7 +95,7 @@ The resulting design improves scalability, security, and manageability while ref
 | 3 | Enterprise Services (DHCP, DNS, HTTP, FTP) | ✅ |
 | 4 | Network Security (SSH, ACLs, Port Security) | ✅ |
 | 5 | Switch Hardening | ✅ |
-| 6 | Syslog & NTP | ⏳ |
+| 6 | Syslog & NTP | ✅ |
 | 7 | NAT & Final Documentation | ⏳ |
 
 ## Design Decisions
@@ -107,6 +109,8 @@ Several design decisions were made to improve scalability, security, and maintai
 - SSH replaced Telnet for secure remote management.
 - ACLs were applied to enforce departmental security policies.
 - Port Security was configured to prevent unauthorized endpoint connections.
+- Centralized Syslog was deployed for enterprise log collection and monitoring.
+- NTP was configured to synchronize time across all network devices for consistent logging.
 
 ## Prerequisites
 
@@ -145,6 +149,8 @@ The enterprise network consists of a Cisco 2911 router connected to a Catalyst 2
 | HTTP | Internal web application hosting |
 | FTP | File transfer services |
 | SSH | Secure remote device administration |
+| Syslog	| Centralized log collection
+| NTP	| Network-wide time synchronization
 
 ## Network Topology
 
@@ -176,6 +182,8 @@ Departments included:
 ## Technologies Used
 
 • Cisco Packet Tracer 8.2.2
+• Syslog
+• Network Time Protocol (NTP)
 
 ### Hardware
 
@@ -217,6 +225,9 @@ Enterprise-Network-Infrastructure/
 │
 ├── README.md
 ├── Enterprise-Network-Infrastructure.pkt
+├── Configurations/
+│   ├── router-config.txt
+│   └── switch-config.txt
 └── Screenshots/
     ├── enterprise-network-diagram.png
     ├── vlan-creation-and-configuration.png
@@ -241,6 +252,12 @@ Enterprise-Network-Infrastructure/
     ├── show-bpduguard.png
     ├── show-portfast.png
     ├── show-unused-ports.png
+    ├── show-logging.png
+    ├── syslog-server-log.png
+    ├── show-ntp-status-router.png
+    ├── show-ntp-status-switch.png
+    ├── show-clock-router.png
+    ├── show-clock-switch.png
 ```
 
 ## Key Achievements
@@ -251,6 +268,9 @@ Enterprise-Network-Infrastructure/
 - Implemented Standard and Extended ACLs to enforce enterprise security policies.
 - Successfully validated Layer 2, Layer 3, and enterprise network services through comprehensive connectivity, routing, and security testing.
 - Hardened the enterprise switch using Cisco Layer 2 security best practices including PortFast, BPDU Guard, Management VLAN, and unused port protection.
+- Implemented centralized Syslog logging for enterprise network monitoring.
+- Configured Network Time Protocol (NTP) to synchronize router and switch clocks.
+- Validated synchronized timestamps across network devices to improve troubleshooting accuracy and support future security monitoring.
 
 ## Features Implemented
 
@@ -284,6 +304,11 @@ Enterprise-Network-Infrastructure/
 - BPDU Guard Protection
 - Administrative Port Shutdown
 - Management VLAN
+- Centralized Syslog Server
+- Remote Logging
+- Network Time Protocol (NTP)
+- Time Synchronization
+- Enterprise Log Management
 
 ## Testing & Verification
 
@@ -304,6 +329,11 @@ The following tests were successfully completed:
 - Verified BPDU Guard protection on access interfaces.
 - Confirmed unused interfaces were assigned to VLAN 999.
 - Verified unused interfaces were administratively shut down.
+- Verified successful Syslog message delivery from the router and switch.
+- Confirmed log entries were recorded on the centralized Syslog server.
+- Verified router clock synchronization using NTP.
+- Verified switch clock synchronization using NTP.
+- Confirmed consistent timestamps across network devices.
   
 ## Troubleshooting
 
@@ -350,8 +380,8 @@ show interfaces trunk
 - [x] Extended ACLs
 - [x] Port Security
 - [x] Switch Hardening
-- [ ] Syslog
-- [ ] NTP
+- [x] Syslog
+- [x] NTP
 - [ ] NAT
 - [ ] Final Documentation
 
@@ -398,6 +428,10 @@ This project strengthened my understanding of:
 - Configured PortFast to reduce access-port startup delays.
 - Enabled BPDU Guard to protect against rogue switches.
 - Implemented a dedicated Management VLAN for improved administrative security.
+- Configured centralized Syslog for enterprise event logging.
+- Learned the importance of centralized logging for troubleshooting and incident investigation.
+- Configured Network Time Protocol (NTP) for consistent timestamps across network devices.
+- Understood why synchronized time is essential for security monitoring and log correlation.
 
 ## Skills Demonstrated
 
@@ -431,6 +465,16 @@ This project strengthened my understanding of:
 - Layer 2 Hardening
 - BPDU Guard
 - PortFast Configuration
+- Syslog Configuration
+- Network Monitoring
+- Enterprise Logging
+- Log Management
+- Network Time Protocol (NTP)
+- Time Synchronization
+- Cisco Infrastructure Management
+- Enterprise Monitoring
+• Cisco Infrastructure Monitoring
+• Time Synchronization
 
 
 ## Configuration Highlights
@@ -556,6 +600,32 @@ interface FastEthernet0/1
  spanning-tree bpduguard enable
 ```
 
+### Syslog Configuration
+
+Configured remote Syslog logging to forward device log messages to the centralized Syslog server. Log timestamps were enabled to improve troubleshooting, event correlation, and security monitoring.
+
+```cisco
+logging 192.168.50.2
+logging trap informational
+service timestamps log datetime msec
+```
+
+### Network Time Protocol (NTP)
+
+#### Router
+
+```cisco
+ntp master 1
+ntp update-calendar
+```
+
+#### Switch
+
+```cisco
+ntp server 192.168.50.1
+clock timezone WAT 1
+```
+
 
 ## Verification Commands
 
@@ -565,13 +635,6 @@ The following Cisco IOS commands were used to verify the network configuration:
 show vlan brief
 show interfaces trunk
 show interfaces status
-
-show spanning-tree summary
-show spanning-tree interface fa0/1 detail
-
-show port-security
-show port-security interface fa0/1
-show port-security address
 
 show ip interface brief
 show ip route
@@ -583,6 +646,20 @@ show access-lists
 
 show ssh
 show users
+
+show port-security
+show port-security interface fa0/1
+show port-security address
+
+show spanning-tree summary
+show spanning-tree interface fa0/1 detail
+
+show logging
+
+show ntp status
+show ntp associations
+
+show clock
 
 show running-config
 ```
@@ -674,7 +751,29 @@ The switch hardening configuration was verified by confirming that PortFast and 
 
 ![Unused Ports](Screenshots/show-unused-ports.png)
 
-The screenshots below validate that Layer 2 hardening was successfully implemented using PortFast, BPDU Guard, and secure handling of unused interfaces.
+The screenshots above validate that Layer 2 hardening was successfully implemented using PortFast, BPDU Guard, and secure handling of unused interfaces.
+
+## Syslog & NTP Verification
+
+### Syslog Configuration & Router NTP Status
+
+![Syslog Logs](Screenshots/router-ntp-config-show-run-ntp-associations.png)
+
+### Syslog Configuration & Switch NTP Status
+
+![Router NTP](Screenshots/switch-config-show-run-ntp-associations.png)
+
+### Syslog Server Logs
+
+![Syslog Logs](Screenshots/syslog-server-log.png)
+
+### Router NTP Verification
+
+![Router NTP Verification](Screenshots/ntp-verification-on-router.png)
+
+### Switch NTP Verification
+
+![Switch NTP Verification](Screenshots/ntp-verification-on-switch.png)
 
 
 ## Project Metrics
@@ -686,10 +785,11 @@ The screenshots below validate that Layer 2 hardening was successfully implement
 | Switches                  | 1 |
 | PCs                       | 8 |
 | Servers                   | 1 |
-| Network Services          | 6 |
+| Network Services          | 7 |
 | Routing Technologies      | 2 |
-| Security Technologies     | 13 |
-| Hardening Techniques      | 5 |
+| Security Technologies     | 17 |
+| Hardening Techniques      | 7 |
+| Monitoring Technologies   | 2 |
 
 ## Security Features
 
@@ -713,6 +813,9 @@ The following security mechanisms have been implemented:
 - BPDU Guard
 - Unused Port Hardening
 - Management VLAN
+- Centralized Syslog
+- Remote Log Collection
+- Network Time Synchronization
 
 
 ## Security Architecture
@@ -736,6 +839,8 @@ Implemented security technologies include:
 | BPDU Guard                  | Protects against rogue switches and STP attacks
 | Unused Port Hardening       | Disables unused interfaces to reduce the attack surface
 | Management VLAN	          | Separates management traffic from user traffic
+| Syslog	| Centralized log collection
+| NTP	| Time synchronization for accurate log correlation
 
 These layered controls help reduce unauthorized access while protecting enterprise resources.
 
@@ -755,21 +860,30 @@ Implemented controls include:
 
 These controls reduce the attack surface, prevent unauthorized physical access, and improve the resilience of the enterprise switching infrastructure.
 
+## Syslog & NTP
+
+To improve enterprise monitoring and operational consistency, centralized logging and time synchronization were implemented across the network.
+
+Implemented controls include:
+
+- Centralized Syslog server
+- Remote logging from router and switch
+- Network Time Protocol (NTP)
+- Consistent timestamps across network devices
+- Improved troubleshooting and event correlation
+
+These controls provide better visibility into network events, simplify troubleshooting, and ensure accurate log timestamps for security monitoring and incident investigations.
+
 
 ## Future Improvements
 
 The following enhancements are planned for upcoming project phases:
 
-### Phase 6 — Network Monitoring & Management
-
-- [ ] Configure Syslog Server
-- [ ] Configure NTP
-- [ ] Centralize device logging
-
-### Phase 7 — Internet Connectivity & Finalization
+## Phase 7 — Internet Connectivity
 
 - [ ] Configure NAT
 - [ ] Validate Internet connectivity
+- [ ] Perform end-to-end testing
 - [ ] Finalize documentation
 
 ## Conclusion
@@ -777,6 +891,8 @@ The following enhancements are planned for upcoming project phases:
 This project demonstrates the implementation of a secure enterprise network using Cisco Packet Tracer. It incorporates VLAN segmentation, inter-VLAN routing, centralized network services, secure remote management, and access control mechanisms commonly deployed in enterprise environments.
 
 Throughout the project, I gained hands-on experience in network design, configuration, troubleshooting, and security while documenting each implementation phase using industry-standard practices.
+
+Phase 6 extended the project by introducing centralized logging and time synchronization, improving operational visibility and preparing the infrastructure for enterprise monitoring and incident response.
 
 ## Disclaimer
 
