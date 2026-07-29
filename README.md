@@ -14,9 +14,11 @@
 ![Extended ACL](https://img.shields.io/badge/Extended_ACL-Configured-success?style=for-the-badge)
 
 ![Project](https://img.shields.io/badge/Project-Enterprise_Network-blue?style=for-the-badge)
-![Status](https://img.shields.io/badge/Status-Phase_6_Complete-brightgreen?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Phase_7_Complete-brightgreen?style=for-the-badge)
 
 🚧 **Current Status**
+
+🎉 Project Status: All Planned Phases Completed
 
 ✅ Phase 1 – VLAN Segmentation
 
@@ -30,46 +32,93 @@
 
 ✅ Phase 6 – Syslog & NTP
 
-🚀 Currently Working On: Phase 7 – NAT & Final Documentation
+✅ Phase 7 – NAT & Internet Connectivity
+
+📘 Final Documentation Complete
+
 
 ## Table of Contents
 
 - [Overview](#overview)
+- **[Quick Start](#quick-start)**
+- [Business Requirements](#business-requirements)
 - [Business Scenario](#business-scenario)
+- [Network Design Goals](#network-design-goals)
 - [Project Timeline](#project-timeline)
 - [Design Decisions](#design-decisions)
 - [Prerequisites](#prerequisites)
 - [Enterprise Network Summary](#enterprise-network-summary)
 - [Project Objectives](#project-objectives)
 - [Architecture Overview](#architecture-overview)
+- [Network Diagram](#final-enterprise-network-architecture)
+- [Topology Highlights](#topology-highlights)
 - [Network Services](#network-services)
 - [Network Topology](#network-topology)
 - [IP Addressing Scheme](#ip-addressing-scheme)
 - [Technologies Used](#technologies-used)
 - [Repository Structure](#repository-structure)
+- **[Getting Started](#getting-started)**
 - [Key Achievements](#key-achievements)
 - [Features Implemented](#features-implemented)
 - [Testing & Verification](#testing--verification)
 - [Troubleshooting](#troubleshooting)
-- [Current Progress](#current-progress)
+- [Project Completion Checklist](#Project-completion-checklist)
 - [Lessons Learned](#lessons-learned)
 - [Skills Demonstrated](#skills-demonstrated)
+- [Skills Mapped to Industry](#skills-mapped-to-industry)
 - [Configuration Highlights](#configuration-highlights)
 - [Verification Commands](#verification-commands)
-- [Project Screenshots](#project-screenshots)
+- [Implementation Screenshots](#implementation-screenshots)
 - [Project Metrics](#project-metrics)
 - [Security Features](#security-features)
 - [Security Architecture](#security-architecture)
 - [Switch Hardening](#switch-hardening)
-- [Future Improvements](#future-improvements)
+- [Syslog & NTP](#syslog-&-ntp)
+- [Future Enhancements](#future-enhancements)
 - [Conclusion](#conclusion)
+- [Project Outcomes](#project-outcomes)
+- [Learning Resources](#learning-resources)
+- [References](#references)
+- [Acknowledgements](#acknowledgements)
+- [Disclaimer](#disclaimer)
 - [Author](#author)
+- [License](#license)
+
 
 ## Overview
 
 This project demonstrates the design and implementation of a secure enterprise network infrastructure using Cisco Packet Tracer. It showcases network segmentation, inter-VLAN routing, centralized network services, and foundational security controls commonly used in enterprise environments.
 
 The objective is to build a secure and scalable network that supports multiple departments through VLAN segmentation and Inter-VLAN Routing.
+
+
+## Executive Summary
+
+This project simulates the deployment of a secure enterprise network for a medium-sized organization. The implementation includes VLAN segmentation, centralized network services, secure remote management, Layer 2 hardening, centralized logging, time synchronization, and Internet access through NAT Overload. The project was completed in Cisco Packet Tracer using Cisco IOS best practices.
+
+
+## Quick Start
+
+1. Clone the repository.
+2. Open `Enterprise-Network-Infrastructure.pkt` using Cisco Packet Tracer 8.2.2 or later.
+3. Allow the topology to initialize.
+4. Verify DHCP, DNS, HTTP, FTP, SSH, ACLs, Syslog, NTP, and NAT.
+5. Review the screenshots and configuration files for implementation details.
+
+
+## Business Requirements
+
+The enterprise required:
+
+- Departmental isolation
+- Secure remote administration
+- Centralized IP address management
+- Internal DNS services
+- Secure Internet access
+- Centralized logging
+- Time synchronization
+- Controlled inter-department communication
+
 
 ## Business Scenario
 
@@ -86,6 +135,19 @@ This project addresses those requirements by implementing:
 
 The resulting design improves scalability, security, and manageability while reflecting networking practices commonly used in enterprise environments.
 
+
+## Network Design Goals
+
+The enterprise network was designed with the following objectives:
+
+- Scalability for future departmental growth
+- Secure segmentation through VLANs
+- Centralized network services
+- Secure remote administration
+- Controlled inter-department communication
+- Simplified troubleshooting and monitoring
+- Internet connectivity using NAT Overload (PAT)
+
 ## Project Timeline
 
 | Phase | Description | Status |
@@ -96,7 +158,7 @@ The resulting design improves scalability, security, and manageability while ref
 | 4 | Network Security (SSH, ACLs, Port Security) | ✅ |
 | 5 | Switch Hardening | ✅ |
 | 6 | Syslog & NTP | ✅ |
-| 7 | NAT & Final Documentation | ⏳ |
+| 7 | NAT (PAT), Internet Connectivity & Documentation | ✅ |
 
 ## Design Decisions
 
@@ -111,6 +173,9 @@ Several design decisions were made to improve scalability, security, and maintai
 - Port Security was configured to prevent unauthorized endpoint connections.
 - Centralized Syslog was deployed for enterprise log collection and monitoring.
 - NTP was configured to synchronize time across all network devices for consistent logging.
+- NAT Overload (PAT) was implemented to allow multiple internal VLANs to securely share a single public IP address for external communication.
+- Static routing was used between the Enterprise Router and the ISP Router to simulate Internet connectivity.
+- NAT was configured on the physical inside interface (GigabitEthernet0/0) because all VLAN subinterfaces inherit the NAT inside designation in the Router-on-a-Stick architecture used in Cisco Packet Tracer.
 
 ## Prerequisites
 
@@ -140,6 +205,30 @@ The project follows industry best practices for network segmentation, service de
 
 The enterprise network consists of a Cisco 2911 router connected to a Catalyst 2960 switch using IEEE 802.1Q trunking. Five VLANs provide logical segmentation for departmental traffic, while centralized services (DHCP, DNS, HTTP, and FTP) are hosted within a dedicated Server VLAN. Inter-VLAN communication is enabled through Router-on-a-Stick, and multiple security mechanisms—including ACLs, SSH, and Port Security—protect both management access and endpoint connectivity.
 
+## Network Diagram
+
+![Final Enterprise Network Architecture](Screenshots/final-enterprise-network-architecture.png)
+
+## Short Architecture Diagram Explanation
+
+User devices connect to the Catalyst 2960 access switch. The switch trunks traffic to the Cisco 2911 router, which performs inter-VLAN routing using Router-on-a-Stick. Enterprise services are hosted in a dedicated Server VLAN, while NAT and static routing provide simulated Internet connectivity through an ISP router.
+
+
+## Topology Highlights
+
+- 5 Departmental VLANs
+- Router-on-a-Stick Architecture
+- 1 Enterprise Router
+- 1 ISP Router
+- Cisco Catalyst 2960 Switch
+- Centralized Server VLAN
+- DHCP Relay
+- Static Default Route to ISP
+- NAT Overload (PAT)
+- SSH Management
+- ACL-based Traffic Filtering
+
+
 ## Network Services
 
 | Service | Purpose |
@@ -149,8 +238,9 @@ The enterprise network consists of a Cisco 2911 router connected to a Catalyst 2
 | HTTP | Internal web application hosting |
 | FTP | File transfer services |
 | SSH | Secure remote device administration |
-| Syslog	| Centralized log collection
-| NTP	| Network-wide time synchronization
+| Syslog	| Centralized log collection |
+| NTP	| Network-wide time synchronization |
+| NAT/PAT | Internet access using a single public IP |
 
 ## Network Topology
 
@@ -200,6 +290,8 @@ Departments included:
 
 - Router-on-a-Stick
 - Inter-VLAN Routing
+- Static Routing
+- NAT Overload (PAT)
 
 ### Network Services
 
@@ -224,41 +316,143 @@ Departments included:
 Enterprise-Network-Infrastructure/
 │
 ├── README.md
-├── Enterprise-Network-Infrastructure.pkt
+├── LICENSE
+│
+├── Documentation/
+│   ├── Enterprise-Network-Report.pdf
+│   ├── Network-Design-Notes.pdf
+│   └── Project-Documentation.pdf
+│
+├── PacketTracer/
+│   └── Enterprise-Network-Infrastructure.pkt
+│
 ├── Configurations/
 │   ├── router-config.txt
-│   └── switch-config.txt
-└── Screenshots/
-    ├── enterprise-network-diagram.png
-    ├── vlan-creation-and-configuration.png
-    ├── vlan-trunk-configuration.png
-    ├── dhcp-server-configuration.png
-    ├── dns-service-enabled-record.png
-    ├── http-homepage.png
-    ├── web-server-test.png
-    ├── ftp-user-authentication.png
-    ├── ssh-login.png
-    ├── ssh-configuration.png
-    ├── rsa-key-generation.png
-    ├── acl-configuration.png
-    ├── extended-acl-verification.png
-    ├── show-extended-acl.png
-    ├── show-access-lists.png
-    ├── show-port-security.png
-    ├── show-port-security-address.png
-    ├── show-port-security-interface-fa01.png
-    └── ping-report-after-disconnecting-admin-pc.png
-    ├── show-spanning-tree-summary.png
-    ├── show-bpduguard.png
-    ├── show-portfast.png
-    ├── show-unused-ports.png
-    ├── show-logging.png
-    ├── syslog-server-log.png
-    ├── show-ntp-status-router.png
-    ├── show-ntp-status-switch.png
-    ├── show-clock-router.png
-    ├── show-clock-switch.png
+│   ├── switch-config.txt
+│   └── isp-router-config.txt
+│
+├── Screenshots/
+│   ├── final-enterprise-network-architecture.png
+│   ├── vlan-creation-and-configuration.png
+│   ├── ssh-login.png
+│   ├── show-ip-nat-translations.png
+│   ├── vlan-trunk-configuration.png
+│   ├── dhcp-server-configuration.png
+│   ├── dns-service-enabled-record.png
+│   ├── http-homepage.png
+│   ├── web-server-test.png
+│   ├── ftp-user-authentication.png
+│   ├── ssh-login.png
+│   ├── ssh-configuration.png
+│   ├── rsa-key-generation.png
+│   ├── acl-configuration.png
+│   ├── extended-acl-verification.png
+│   ├── show-extended-acl.png
+│   ├── show-access-lists.png
+│   ├── show-port-security.png
+│   ├── show-port-security-address.png
+│   ├── show-port-security-interface-fa01.png
+│   ├── ping-report-after-disconnecting-admin-pc.png
+│   ├── show-spanning-tree-summary.png
+│   ├── show-bpduguard.png
+│   ├── show-portfast.png
+│   ├── show-unused-ports.png
+│   ├── show-logging.png
+│   ├── syslog-server-log.png
+│   ├── show-ntp-status-router.png
+│   ├── show-ntp-status-switch.png
+│   ├── show-clock-router.png
+│   ├── show-clock-switch.png
+│   ├── entnet-conf-ipnat-acl.png
+│   ├── show-ip-nat-translations.png
+│   ├── show-ipnat-stat.png
+│   └── ping-isp-success.png
 ```
+
+## Getting Started
+
+### Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/oluwatobilobacybers-lang/Enterprise-Network-Infrastructure.git
+```
+
+1. Open the project using Cisco Packet Tracer 8.2.2 or later.
+
+2. Load Enterprise-Network-Infrastructure.pkt
+
+3. Wait for all devices to finish booting.
+
+4. Test connectivity:
+- Ping between VLANs
+- Verify DHCP address assignment
+- Test DNS name resolution
+- Browse the internal web server
+- Connect to the FTP server
+- SSH into the Enterprise Router
+- Verify NAT using:
+
+show ip nat translations
+show ip nat statistics
+
+5. Review the screenshots in the Screenshots folder for configuration verification.
+
+
+---
+
+# 2. Which topology should you use?
+
+Use the **first (newer) topology**.
+
+Reasons:
+
+✅ Includes the ISP router
+
+✅ Includes the Enterprise Server
+
+✅ Includes VLAN 50
+
+✅ Shows NAT topology
+
+✅ Shows Internet simulation
+
+✅ Shows the final enterprise architecture
+
+This is exactly what employers expect to see.
+
+---
+
+Do **not** use the second topology because it is missing:
+
+- Server VLAN
+- ISP Router
+- NAT
+- Syslog
+- NTP
+- Final architecture
+
+It represents an earlier phase of the project.
+
+---
+
+## 3. I recommend one small improvement
+
+Instead of this:
+
+> Enterprise Network Diagram
+
+Write
+
+> **Final Enterprise Network Topology**
+
+Then beneath it write something like:
+
+```markdown
+The completed enterprise network consists of five departmental VLANs connected through Router-on-a-Stick architecture, centralized enterprise services (DHCP, DNS, HTTP, FTP), an ISP router for Internet simulation, and NAT Overload (PAT) for external connectivity.
+```
+
 
 ## Key Achievements
 
@@ -271,6 +465,8 @@ Enterprise-Network-Infrastructure/
 - Implemented centralized Syslog logging for enterprise network monitoring.
 - Configured Network Time Protocol (NTP) to synchronize router and switch clocks.
 - Validated synchronized timestamps across network devices to improve troubleshooting accuracy and support future security monitoring.
+- Successfully implemented NAT Overload (PAT) to provide Internet connectivity for all internal VLANs.
+- Verified dynamic address translation using Cisco IOS NAT verification commands.
 
 ## Features Implemented
 
@@ -309,6 +505,11 @@ Enterprise-Network-Infrastructure/
 - Network Time Protocol (NTP)
 - Time Synchronization
 - Enterprise Log Management
+- Static Routing
+- NAT Overload (PAT)
+- Public IP Address Translation
+- Internet Connectivity Simulation
+- Dynamic NAT Translation Verification
 
 ## Testing & Verification
 
@@ -334,6 +535,10 @@ The following tests were successfully completed:
 - Verified router clock synchronization using NTP.
 - Verified switch clock synchronization using NTP.
 - Confirmed consistent timestamps across network devices.
+- Verified successful NAT translation from private to public IP addresses.
+- Confirmed Internet-bound traffic from multiple VLANs.
+- Verified PAT functionality using dynamic NAT translation tables.
+- Validated static routing between the Enterprise Router and ISP Router.
   
 ## Troubleshooting
 
@@ -366,7 +571,36 @@ After verifying the trunk configuration, connectivity between the router and the
 show interfaces trunk
 ```
 
-## Current Progress
+### Issue: NAT Translations Not Appearing
+
+After configuring NAT overload, the command "show ip nat translations" returned no translations, even though the NAT configuration appeared correct.
+
+#### Root Cause
+
+During testing, the replacement PC in the Admin VLAN retained an incorrect manual IP configuration after an earlier project phase. Because the device had not obtained a valid address from the enterprise DHCP server, no qualifying outbound traffic was generated, preventing NAT translations from being created.
+
+#### Resolution
+
+The issue was resolved by:
+
+- Renewing the PC's IP configuration using DHCP
+- Verifying the PC received a valid IP address from the enterprise DHCP server
+- Outbound traffic by pinging the ISP router
+- Confirming NAT translations were successfully created
+
+#### Verification
+
+```text
+Enterprise-Router# show ip nat translations
+
+Pro  Inside global       Inside local        Outside global
+icmp 209.165.200.226     192.168.40.101      209.165.200.225
+```
+
+Successful NAT translations confirmed that Port Address Translation (PAT) was functioning correctly.
+
+
+## Project Completion Checklist
 
 - [x] VLAN Segmentation
 - [x] Inter-VLAN Routing
@@ -382,8 +616,8 @@ show interfaces trunk
 - [x] Switch Hardening
 - [x] Syslog
 - [x] NTP
-- [ ] NAT
-- [ ] Final Documentation
+- [x] NAT
+- [x] Final Documentation
 
 ## Lessons Learned
 
@@ -432,6 +666,12 @@ This project strengthened my understanding of:
 - Learned the importance of centralized logging for troubleshooting and incident investigation.
 - Configured Network Time Protocol (NTP) for consistent timestamps across network devices.
 - Understood why synchronized time is essential for security monitoring and log correlation.
+- Implemented Network Address Translation (NAT Overload) to allow multiple private networks to share a single public IP address.
+- Configured static routing between the enterprise network and a simulated ISP.
+- Verified NAT translations using Cisco IOS verification commands.
+- Troubleshot a connectivity issue caused by a replacement PC that had not obtained an IP address via DHCP, reinforcing the importance of validating end-host configuration during network troubleshooting.
+- Learned that NAT translations are created only after matching traffic traverses the router.
+- Verified that correct end-host IP addressing obtained through DHCP is essential for successful NAT operation.
 
 ## Skills Demonstrated
 
@@ -470,11 +710,32 @@ This project strengthened my understanding of:
 - Enterprise Logging
 - Log Management
 - Network Time Protocol (NTP)
-- Time Synchronization
 - Cisco Infrastructure Management
 - Enterprise Monitoring
-• Cisco Infrastructure Monitoring
-• Time Synchronization
+- Cisco Infrastructure Monitoring
+- Time Synchronization
+- Network Address Translation (NAT)
+- Port Address Translation (PAT)
+- Internet Edge Routing
+- Static Routing
+
+## Skills Mapped to Industry
+
+| Technology        | Industry Skill                     |
+| ----------------- | ---------------------------------- |
+| VLANs             | Network Segmentation               |
+| Router-on-a-Stick | Layer 3 Routing                    |
+| DHCP              | IP Address Management              |
+| DNS               | Enterprise Infrastructure Services |
+| SSH               | Secure Remote Administration       |
+| ACLs              | Network Access Control             |
+| Port Security     | Layer 2 Security                   |
+| Syslog            | Security Monitoring                |
+| NTP               | Log Correlation                    |
+| NAT/PAT           | Internet Edge Security             |
+| Static Routing    | WAN Connectivity                   |
+| Cisco IOS         | Network Device Administration      |
+
 
 
 ## Configuration Highlights
@@ -626,6 +887,26 @@ ntp server 192.168.50.1
 clock timezone WAT 1
 ```
 
+### NAT Configuration
+
+```cisco
+interface GigabitEthernet0/0
+ ip nat inside
+
+interface GigabitEthernet0/1
+ ip nat outside
+
+access-list 1 permit 192.168.10.0 0.0.0.255
+access-list 1 permit 192.168.20.0 0.0.0.255
+access-list 1 permit 192.168.30.0 0.0.0.255
+access-list 1 permit 192.168.40.0 0.0.0.255
+access-list 1 permit 192.168.50.0 0.0.0.255
+
+ip nat inside source list 1 interface GigabitEthernet0/1 overload
+```
+
+> **Note:** In this Router-on-a-Stick topology, `ip nat inside` is applied to the physical interface (`GigabitEthernet0/0`). All VLAN subinterfaces (GigabitEthernet0/0.10, .20, .30, .40, and .50) inherit the inside NAT designation, which is the expected behavior in Cisco Packet Tracer.
+
 
 ## Verification Commands
 
@@ -662,15 +943,19 @@ show ntp associations
 show clock
 
 show running-config
+
+show ip nat translations
+show ip nat statistics
+show ip route
 ```
 
-## Project Screenshots
+## Implementation Screenshots
 
-### Enterprise Network Diagram
+### Final Enterprise Network Topology
 
-The enterprise topology consists of five VLANs connected through Router-on-a-Stick architecture with centralized DHCP, DNS, HTTP, FTP, and SSH services hosted in the Server VLAN.
+The completed enterprise network consists of five departmental VLANs connected through Router-on-a-Stick architecture, centralized enterprise services, an ISP router for Internet simulation, Syslog, NTP, and NAT Overload (PAT).
 
-![Enterprise Network Diagram](Screenshots/enterprise-network-diagram.png)
+![Enterprise Network Architecture](Screenshots/final-enterprise-network-architecture.png)
 
 ### VLAN Configuration
 
@@ -753,7 +1038,7 @@ The switch hardening configuration was verified by confirming that PortFast and 
 
 The screenshots above validate that Layer 2 hardening was successfully implemented using PortFast, BPDU Guard, and secure handling of unused interfaces.
 
-## Syslog & NTP Verification
+### Syslog & NTP Verification
 
 ### Syslog Configuration & Router NTP Status
 
@@ -775,21 +1060,39 @@ The screenshots above validate that Layer 2 hardening was successfully implement
 
 ![Switch NTP Verification](Screenshots/ntp-verification-on-switch.png)
 
+### NAT (PAT) Verification
+
+### NAT Configuration
+
+![NAT Configuration](Screenshots/entnet-conf-ipnat-acl.png)
+
+### NAT Translation Table
+
+![NAT Translation](Screenshots/show-ip-nat-translations.png)
+
+### NAT Statistics
+
+![NAT Statistics](Screenshots/show-ipnat-stat.png)
+
+### Internet Connectivity Test
+
+![Ping ISP](Screenshots/ping-isp-success.png)
+
 
 ## Project Metrics
 
 | Item                      | Count |
 | ------------------------- | ----: |
 | VLANs                     | 5 |
-| Router                    | 1 |
+| Router                    | 2 |
 | Switches                  | 1 |
 | PCs                       | 8 |
 | Servers                   | 1 |
-| Network Services          | 7 |
-| Routing Technologies      | 2 |
-| Security Technologies     | 17 |
+| Network Services          | 8 |
+| Routing Technologies      | 3 |
+| Security Technologies     | 16 |
 | Hardening Techniques      | 7 |
-| Monitoring Technologies   | 2 |
+
 
 ## Security Features
 
@@ -815,7 +1118,9 @@ The following security mechanisms have been implemented:
 - Management VLAN
 - Centralized Syslog
 - Remote Log Collection
-- Network Time Synchronization
+- NAT Overload (PAT)
+- Public IP Address Translation
+- Internet Edge Protection
 
 
 ## Security Architecture
@@ -835,12 +1140,14 @@ Implemented security technologies include:
 | Secure VTY Configuration    | Disables Telnet and permits SSH only |
 | Port Security               | Prevents unauthorized endpoint connections |
 | Sticky MAC Address Learning | Dynamically learns and secures trusted devices |
-| PortFast	                  | Reduces access-port startup delay
-| BPDU Guard                  | Protects against rogue switches and STP attacks
-| Unused Port Hardening       | Disables unused interfaces to reduce the attack surface
-| Management VLAN	          | Separates management traffic from user traffic
-| Syslog	| Centralized log collection
-| NTP	| Time synchronization for accurate log correlation
+| PortFast	                  | Reduces access-port startup delay |
+| BPDU Guard                  | Protects against rogue switches and STP attacks |
+| Unused Port Hardening       | Disables unused interfaces to reduce the attack surface |
+| Management VLAN	          | Separates management traffic from user traffic |
+| Syslog	| Centralized log collection |
+| NTP	| Time synchronization for accurate log correlation |
+| NAT Overload (PAT)  | Hides internal private addresses behind a single public IP |
+
 
 These layered controls help reduce unauthorized access while protecting enterprise resources.
 
@@ -875,24 +1182,69 @@ Implemented controls include:
 These controls provide better visibility into network events, simplify troubleshooting, and ensure accurate log timestamps for security monitoring and incident investigations.
 
 
-## Future Improvements
+## Future Enhancements
 
-The following enhancements are planned for upcoming project phases:
+Potential improvements for future versions include:
 
-## Phase 7 — Internet Connectivity
-
-- [ ] Configure NAT
-- [ ] Validate Internet connectivity
-- [ ] Perform end-to-end testing
-- [ ] Finalize documentation
+- Dynamic Routing (OSPF)
+- Site-to-Site VPN
+- GRE Tunnel
+- Redundant Routers (HSRP)
+- AAA Authentication (RADIUS/TACACS+)
+- SNMP Monitoring
+- NetFlow Traffic Analysis
+- IPv6 Implementation
+- Zone-Based Firewall
 
 ## Conclusion
 
-This project demonstrates the implementation of a secure enterprise network using Cisco Packet Tracer. It incorporates VLAN segmentation, inter-VLAN routing, centralized network services, secure remote management, and access control mechanisms commonly deployed in enterprise environments.
+This project demonstrates the end-to-end implementation of a secure enterprise network using Cisco Packet Tracer. It incorporates VLAN segmentation, Inter-VLAN Routing, centralized enterprise services, SSH, ACLs, Layer 2 hardening, Syslog, NTP, and NAT Overload (PAT) to simulate a modern enterprise network following industry best practices.
 
 Throughout the project, I gained hands-on experience in network design, configuration, troubleshooting, and security while documenting each implementation phase using industry-standard practices.
 
-Phase 6 extended the project by introducing centralized logging and time synchronization, improving operational visibility and preparing the infrastructure for enterprise monitoring and incident response.
+The final phase extended the project by implementing NAT Overload (PAT) and Internet connectivity simulation, complementing the earlier implementation of centralized Syslog logging and NTP synchronization.
+
+
+## Project Outcomes
+
+✔ 5 VLANs deployed
+
+✔ 100% Inter-VLAN connectivity
+
+✔ Automated IP addressing
+
+✔ Secure SSH administration
+
+✔ Centralized logging
+
+✔ Time synchronization
+
+✔ Internet access via NAT
+
+✔ Security policy enforcement through ACLs
+
+
+## Learning Resources
+
+This project was built by applying concepts learned through:
+
+- CompTIA Network+
+- CompTIA Security+
+- TS Academy Cybersecurity Program
+- New Horizons Nigeria – Cisco Networking Training
+
+## References
+
+- Cisco IOS Documentation
+- Cisco Packet Tracer User Guide
+- RFC 2131 – Dynamic Host Configuration Protocol (DHCP)
+- RFC 1034 & RFC 1035 – Domain Name System (DNS)
+- RFC 3022 – Traditional NAT
+
+
+## Acknowledgements
+
+I would like to thank the instructors and mentors at TS Academy and New Horizons Nigeria for providing the foundational networking and cybersecurity knowledge that contributed to this project. I also acknowledge the CompTIA Network+ and Security+ learning materials that reinforced the concepts applied throughout this implementation.
 
 ## Disclaimer
 
@@ -902,13 +1254,16 @@ This project was developed in Cisco Packet Tracer for educational and portfolio 
 
 **Banjo Oluwatobiloba Adekunle**
 
-Aspiring Cybersecurity Analyst
-
-- ISC² Certified in Cybersecurity (CC)
-- CompTIA Security+
-- CEH Candidate
+Cybersecurity Analyst | Network Security Enthusiast
+ISC² Certified in Cybersecurity (CC)
+CompTIA Security+
+CEH Candidate
 
 🔗 **LinkedIn:** https://www.linkedin.com/in/oluwatobiloba-banjo-b2368819b/
 
 💻 **GitHub:** https://github.com/oluwatobilobacybers-lang
 
+
+## License
+
+This project is provided for educational and portfolio purposes.
